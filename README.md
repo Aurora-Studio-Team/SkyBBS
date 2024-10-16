@@ -1,2 +1,2 @@
 ### SksBBS
-下一代BBS论坛网站 (Next-generation BBS forum website)
+涓嬩竴浠BS璁哄潧缃戠珯 (Next-generation BBS forum website)
