@@ -1,62 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="">
 
 <head>
   <meta charset="utf-8">
-  <title>Page Not Found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    * {
-      line-height: 1.2;
-      margin: 0;
-    }
+  <title>404 Not Found</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
 
-    html {
-      color: #888;
-      display: table;
-      font-family: sans-serif;
-      height: 100%;
-      text-align: center;
-      width: 100%;
-    }
-
-    body {
-      display: table-cell;
-      vertical-align: middle;
-      margin: 2em auto;
-    }
-
-    h1 {
-      color: #555;
-      font-size: 2em;
-      font-weight: 400;
-    }
-
-    p {
-      margin: 0 auto;
-      width: 280px;
-    }
-
-    @media only screen and (max-width: 280px) {
-
-      body,
-      p {
-        width: 95%;
-      }
-
-      h1 {
-        font-size: 1.5em;
-        margin: 0 0 0.3em;
-      }
-
-    }
-  </style>
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-  <h1>Page Not Found</h1>
-  <p>Sorry, but the page you were trying to view does not exist.</p>
+<style>
+  html,
+  body {
+    background-image: linear-gradient(rgb(166, 221, 239),rgb(166, 221, 239));
+  }
+  .cnm{
+    text-align: center;
+  }
+</style>
+<div id="msg" class="msg">
+  <img src="img/logo.png" alt="logo">
+  <h2>SkyBBS</h2>
+</div>
+<div class="header">
+  <div class="doc">
+    <div class="dropdown">
+      <p class="dropbtn" style="color: white;margin-right: 100px;">帮助</p>
+      <ul class="dropdown-content" >
+        <li><a href="help.html">使用方法</a></li>
+        <li><a href="#example">与我们联系</a></li>
+        <li><a href="https://github.com/Aurora-Studio-Team/SkyBBS">Github</a></li>
+        <li><a href="#github">关于</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <p class="dropbtn" style="color: white;margin-right: 80px;">导航</p>
+      <ul class="dropdown-content" >
+        <li><a href="index.html">主页</a></li>
+        <li><a href="login.html">登陆/注册</a></li>
+        <li><a href="user.html">个人中心</a></li>
+        <li><a href="blog.html">发帖</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="content">
+    <h1 class="cnm" style="color:rgb(103,100,100); margin-top: 300px;">404 Not Found</h1>
+    <p class="cnm" style="color:rgb(103,100,100);">抱歉，您访问的页面不存在。</p>
+  </div>
+</div>
 </body>
 
 </html>
-<!-- IE needs 512+ bytes: https://docs.microsoft.com/archive/blogs/ieinternals/friendly-http-error-pages -->

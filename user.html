@@ -20,9 +20,37 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 <style>
+    .big-border {
+        border: 5px groove;
+        padding: 20px;
+        margin-top:25px;
+        margin-left: 300px;
+        margin-right: 300px;
+
+    }
     html,
     body {
         background-image: linear-gradient(rgb(166, 221, 239),rgb(166, 221, 239));
+    }
+    p.margin {
+        margin: 0px 30px;
+    }
+    button.example1 {
+        padding: -10px 50px;
+        background: rgb(86, 175, 241);
+        width: 90px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    button.example1:hover {
+        background: rgb(66, 145, 211);
+    }
+    .pre-wrap {
+        white-space: pre-wrap;
+    }
+    .cnm{
+        text-align: center;
     }
 </style>
 <body>
@@ -53,22 +81,23 @@
     </div>
 </div>
 <div id="user">
-    <p>欢迎，{{nowUser}}！</p>
+    <h3 class="cnm">欢迎，{{nowUser}}！</h3>
+    <h4 class="cnm">您发布的贴子：</h4>
 </div>
 <div id="blog">
-    <h1>帖子列表</h1>
     <div v-if="userBlogs.length === 0">
         <p>还没有发布任何帖子...</p>
     </div>
-    <div v-for="(blog, index) in userBlogs" :key="index">
+    <div v-for="(blog, index) in userBlogs" :key="index" class="big-border">
         <h2>{{ blog.title }}</h2>
         <p class="pre-wrap">{{ blog.content }}</p>
         <p>发布日期：{{ blog.createtime }}</p>
-        <p>作者：<strong>{{ blog.author }}</strong></p>
-        <h3>回复：</h3>
+        <p>作者：{{ blog.author }}</p>
+
         <div v-for="(reply, rIndex) in blog.reply" :key="rIndex">
-            <p class="margin"><strong>{{ reply.name }}</strong>: {{ reply.content }}</p>
+            <p class="margin"><strong>{{ reply.name }}:</strong> {{ reply.content }}</p>
             <p class="margin">回复日期：{{ reply.createtime }}</p>
+            <button class="example1" v-on:click="deleteReply(index, rIndex)">删除此回复</button>
         </div>
     </div>
 </div>

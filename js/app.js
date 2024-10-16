@@ -5,13 +5,36 @@ var app = new Vue({
         newName: '',
         newEmail: '',
         newPassword: '',
+        currentPassword: '',
+        newPasswordConfirm: '',
         isLogin: false,
         nowUser: '',
         nowEmail: '',
-        nowPassword: ''
+        nowPassword: '',
+        captcha: '', // 验证码
+        captchaInput: '' // 用户输入的验证码
     },
     methods: {
+        getCaptcha: function() {
+            this.captcha = Math.random().toString(36).substring(2, 8); // 随机生成验证码
+            alert("验证码为: " + this.captcha); // 真实应用中应避免使用alert展示验证码
+        },
+        validateCaptcha: function() {
+            if (this.captchaInput === '') {
+                alert("请输入验证码");
+                return false;
+            }
+            if (this.captchaInput !== this.captcha) {
+                alert("验证码错误");
+                return false;
+            }
+            captchaInput='';
+            return true;
+        },
         register: function() {
+            if (!this.validateCaptcha()) { // 验证验证码
+                return;
+            }
             if (this.newName === '' || this.newEmail === '' || this.newPassword === '') {
                 alert("请填写完整信息");
                 return;
@@ -54,8 +77,11 @@ var app = new Vue({
             this.saveUsers(); // 保存用户数据
         },
         login: function() {
+            if (!this.validateCaptcha()) { // 验证验证码
+                return;
+            }
             for (let user of this.users) {
-                if (user.email === this.newEmail && user.password === this.newPassword) {
+                if (user.email === this.newEmail && user.password === this.newPassword && user.name === this.newName) {
                     this.isLogin = true;
                     alert("成功登陆");
                     this.nowUser = user.name;
@@ -81,6 +107,48 @@ var app = new Vue({
             // 仅清除登录状态，不清除用户信息
             localStorage.removeItem('isLogin');
             localStorage.removeItem('nowUser');
+        },
+        changePassword: function() {
+            if (!this.validateCaptcha()) { // 验证验证码
+                return;
+            }
+            if (!this.isLogin) {
+                alert("请先登录才能更改密码");
+                return;
+            }
+
+            // 查找当前用户
+            const user = this.users.find(user => user.name === this.nowUser);
+
+            if (!user) {
+                alert("用户不存在");
+                return;
+            }
+            // 验证当前密码
+            if (this.currentPassword !== user.password) {
+                alert("当前密码错误");
+                return;
+            }
+            // 验证新密码
+            if (this.newPassword.length < 6) {
+                alert("新密码长度至少6位");
+                return;
+            }
+            if (this.newPassword !== this.newPasswordConfirm) {
+                alert("新密码与确认密码不匹配");
+                return;
+            }
+
+            // 更新密码
+            user.password = this.newPassword;
+            this.saveUsers(); // 保存更新后的用户数据
+            alert("密码已成功更改");
+
+            // 清空输入字段
+            this.currentPassword = '';
+            this.newPassword = '';
+            this.newPasswordConfirm = '';
+            this.logout(); // 退出登录
         },
         saveUsers: function() {
             localStorage.setItem('users', JSON.stringify(this.users)); // 保存用户数据到 localStorage

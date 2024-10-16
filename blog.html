@@ -81,7 +81,7 @@
 </div>
 
 <div id="blog">
-  <div id="blogging">
+  <div id="user" v-if="isLogin">
     <input type="text" placeholder="标题" v-model="newTitle">
     <textarea placeholder="内容" v-model="newContent" style="margin: 10px auto;"></textarea>
     <button class="example1" v-on:click="addBlog()" style="margin: 10px auto;">发布</button>
