@@ -15,7 +15,9 @@
 
 5, 拿到代码后，运行以下命令进行开发环境部署：
 
-<code> pnpm i <br/> pnpm run dev </code>
+<code> pnpm i</code>
+
+<code>pnpm run dev</code>
 
 **Aurora Studio | SkyBBS开发组 | THZ**
 
